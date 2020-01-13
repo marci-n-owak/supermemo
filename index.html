@@ -17,6 +17,7 @@
             let clickCounter = 0;
             let wybranaCell = 0;
             let wybranaLos = 0;
+            let liczbaKoncowa = 0;
 
             //Tworzenie tabeli
             function numbersToTable(){
@@ -82,15 +83,24 @@
 
                         document.getElementById("cell" + wybranaCell).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
                         document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
+
+                        liczbaKoncowa++;
+                        win();
                         }
                         else{
                             document.getElementById("cell" + wybranaCell).style.backgroundImage = "none";
                             document.getElementById("cell" + cellNumber).style.backgroundImage = "none";
                         }
                         document.body.setAttribute("style", "pointer-events: auto");
-                    }, 700)
+                    }, 650)
                 }
                 clickCounter++;
+            }
+            
+            function win(){
+                if(liczbaKoncowa == liczbaObrazkow){
+                    alert("Zwycięstwo!");
+                }
             }
         </script>
         <footer>© Marcin Nowak</footer>
