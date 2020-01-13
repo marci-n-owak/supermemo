@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
+        <div class="menu">SuperMemo z 3Ti1</div>
 		<script>
             //Globalne zmienne
 			let liczbaPozioma = 5;
@@ -15,7 +16,7 @@
             let wybranaCell = 0;
             let wybranaLos = 0;
 
-
+            //Tworzenie tabeli
             function numbersToTable(){
                 for(let i = 0; liczbaObrazkow > i; i++){
                     table[i] = i;
@@ -35,7 +36,6 @@
 
                     let help = document.getElementById("div");
                     let tableRow = document.body.insertBefore(cellAbove, help);
-                    //tableRow.setAttribute("id", ("tableRowNumber" + i));
 
                     for(let j = 0; j < liczbaPozioma; j++){
                         let cell = document.createElement("div");
@@ -67,20 +67,23 @@
                     wybranaCell = cellNumber;
                     wybranaLos = wylosowane[cellNumber];
 
-                    document.getElementById("cell" + cellNumber).innerHTML = wylosowane[cellNumber];
+                    document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
                 }
                 else{
-                    document.getElementById("cell" + cellNumber).innerHTML = wylosowane[cellNumber];
+                    document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
                     document.body.setAttribute("style", "pointer-events: none");
                     setTimeout(function(){
                         if(wybranaLos == wylosowane[cellNumber]){
 
                         document.getElementById("cell" + wybranaCell).setAttribute("style", "pointer-events: none");
                         document.getElementById("cell" + cellNumber).setAttribute("style", "pointer-events: none");
+
+                        document.getElementById("cell" + wybranaCell).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
+                        document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
                         }
                         else{
-                            document.getElementById("cell" + cellNumber).innerHTML = "";
-                            document.getElementById("cell" + wybranaCell).innerHTML = "";
+                            document.getElementById("cell" + wybranaCell).style.backgroundImage = "none";
+                            document.getElementById("cell" + cellNumber).style.backgroundImage = "none";
                         }
                         document.body.setAttribute("style", "pointer-events: auto");
                     }, 700)
@@ -88,5 +91,6 @@
                 clickCounter++;
             }
         </script>
+        <footer>© Marcin Nowak</footer>
 	</body>
 </html>
