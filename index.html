@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<script>
+            //Globalne zmienne
+			let liczbaPozioma = 5;
+			let liczbaPionowa = 4;
+			let table = [];
+            let wylosowane = [];
+			let liczbaObrazkow = (liczbaPionowa * liczbaPozioma) / 2;
+            let clickCounter = 0;
+            let wybranaCell = 0;
+            let wybranaLos = 0;
+
+
+            function numbersToTable(){
+                for(let i = 0; liczbaObrazkow > i; i++){
+                    table[i] = i;
+                }
+                for(let j = 0; liczbaObrazkow > j; j++){
+                    table[liczbaObrazkow + j] = j;
+                }
+            }
+            numbersToTable();
+
+            //Tworzenie widzialnej tabeli
+            function createTable(){
+                let counter = 0;
+                for(let i = 0; i < liczbaPionowa; i++){
+                    let cellAbove = document.createElement("div");
+                    cellAbove.setAttribute("class", "tableRow");
+
+                    let help = document.getElementById("div");
+                    let tableRow = document.body.insertBefore(cellAbove, help);
+                    //tableRow.setAttribute("id", ("tableRowNumber" + i));
+
+                    for(let j = 0; j < liczbaPozioma; j++){
+                        let cell = document.createElement("div");
+                        cell.setAttribute("class", "cell");
+                        cell.setAttribute("id", ("cell" + counter));
+                        cell.setAttribute("onmousedown", ("buttonCheck(" + counter +")"));
+
+                        counter++;
+
+                        tableRow.appendChild(cell);
+                    }
+                }
+            }
+            createTable();
+            
+			//Losowanie tabeli
+            function generuj(){
+				for(var y=0; y<20; y++){
+					los = Math.floor(Math.random()*(20-y));
+					wylosowane[y] = table[los];
+					table.splice(los, 1);
+				}
+			}
+            generuj();
+
+            //Sprawdzanie przycisku
+            function buttonCheck(cellNumber){
+                if(clickCounter % 2 == 0){
+                    wybranaCell = cellNumber;
+                    wybranaLos = wylosowane[cellNumber];
+
+                    document.getElementById("cell" + cellNumber).innerHTML = wylosowane[cellNumber];
+                }
+                else{
+                    document.getElementById("cell" + cellNumber).innerHTML = wylosowane[cellNumber];
+                    document.body.setAttribute("style", "pointer-events: none");
+                    setTimeout(function(){
+                        if(wybranaLos == wylosowane[cellNumber]){
+
+                        document.getElementById("cell" + wybranaCell).setAttribute("style", "pointer-events: none");
+                        document.getElementById("cell" + cellNumber).setAttribute("style", "pointer-events: none");
+                        }
+                        else{
+                            document.getElementById("cell" + cellNumber).innerHTML = "";
+                            document.getElementById("cell" + wybranaCell).innerHTML = "";
+                        }
+                        document.body.setAttribute("style", "pointer-events: auto");
+                    }, 700)
+                }
+                clickCounter++;
+            }
+        </script>
+	</body>
+</html>

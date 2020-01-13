@@ -1,0 +1,18 @@
+.cell{
+	display: table-cell;
+	height: 5vh;
+	width: 5vh;
+	cursor: pointer;
+	margin: 0.1vh;
+	background: #ecde0e;
+}
+.tableRow{
+    display: table-row;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+}
+.disabledCell{
+	pointer-events: none;
+}
