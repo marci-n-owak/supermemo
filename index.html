@@ -66,11 +66,12 @@
 
             //Sprawdzanie przycisku
             function buttonCheck(cellNumber){
+                document.getElementById("cell" + cellNumber).style.pointerEvents = "none";
                 if(clickCounter % 2 == 0){
                     wybranaCell = cellNumber;
                     wybranaLos = wylosowane[cellNumber];
 
-                    document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
+                    document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)"     
                 }
                 else{
                     document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
@@ -92,11 +93,15 @@
                             document.getElementById("cell" + cellNumber).style.backgroundImage = "none";
                         }
                         document.body.setAttribute("style", "pointer-events: auto");
+
+                        document.getElementById("cell" + wybranaCell).style.pointerEvents = "auto";
+                        document.getElementById("cell" + cellNumber).style.pointerEvents = "auto";
                     }, 650)
                 }
                 clickCounter++;
             }
             
+            //Alert
             function win(){
                 if(liczbaKoncowa == liczbaObrazkow){
                     alert("Zwycięstwo!");
