@@ -3,6 +3,9 @@ body{
 	background-repeat: no-repeat;
     background-attachment: fixed;
 }
+.disabledBody{
+	pointer-events: none;
+}
 .menu{
 	text-align: center;
 	padding-top: 2vh;

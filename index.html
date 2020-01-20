@@ -75,7 +75,10 @@
                 }
                 else{
                     document.getElementById("cell" + cellNumber).style.backgroundImage = "url(images/" + wylosowane[cellNumber] + ".png)";
-                    document.body.setAttribute("style", "pointer-events: none");
+                    
+                    let body = document.body;
+                    body.classList.add("disabledBody");
+                    //document.body.setAttribute("style", "pointer-events: none");
                     setTimeout(function(){
                         if(wybranaLos == wylosowane[cellNumber]){
 
@@ -92,10 +95,11 @@
                             document.getElementById("cell" + wybranaCell).style.backgroundImage = "none";
                             document.getElementById("cell" + cellNumber).style.backgroundImage = "none";
                         }
-                        document.body.setAttribute("style", "pointer-events: auto");
-
                         document.getElementById("cell" + wybranaCell).style.pointerEvents = "auto";
                         document.getElementById("cell" + cellNumber).style.pointerEvents = "auto";
+
+                        body.classList.remove("disabledBody");
+                        //document.body.setAttribute("style", "pointer-events: auto");
                     }, 650)
                 }
                 clickCounter++;
